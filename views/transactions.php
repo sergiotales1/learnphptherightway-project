@@ -31,6 +31,9 @@
     <table>
         <thead>
             <tr>
+                <?php if (array_key_exists("owner", $transactions[0])): ?>
+                    <th>Owner</th>
+                <?php endif; ?>
                 <th>Date</th>
                 <th>Check #</th>
                 <th>Description</th>
@@ -41,6 +44,9 @@
             <?php if (!empty($transactions)): ?>
                 <?php foreach ($transactions as $transaction): ?>
                     <tr>
+                        <?php if (array_key_exists("owner", $transactions[0])): ?>
+                            <td><?= $transaction["owner"] ?></td>
+                        <?php endif; ?>
                         <td><?= formatDate($transaction["date"]) ?></td>
                         <td><?= $transaction["checkNumber"] ?></td>
                         <td><?= $transaction["description"] ?></td>
@@ -55,7 +61,7 @@
                                 </span>
                             <?php else: ?>
                                 <?= formatDollarAmount($transaction["amount"]) ?>
-                            <?php endif ?>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach ?>
